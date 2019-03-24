@@ -39,9 +39,6 @@ respondToHug(event: Event)
   //this.emitHug.emit(event.target.data);
   //OR
   
-  
-  
-  
   this.emitHug.emit(this.child.name)
   .pipe()
   .subscribe((v) => {
@@ -50,7 +47,6 @@ respondToHug(event: Event)
   })
   ;
 }
-
 
 
 mother_response(childName: string)
