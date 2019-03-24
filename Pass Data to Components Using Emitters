@@ -1,0 +1,51 @@
+Using Emitters, Input & Output to Pass Data to Components
+
+ParentComponent
+===============
+mychild   = [];
+mychild[] = [
+{id: 1, name: 'Joseph', received_action: 'none', response: '' };
+{id: 2, name: 'Joanna', received_action: 'none', response: '' };
+{id: 3, name: 'Joshua', received_action: 'none', response: '' };
+];
+
+hugChild(index: number)
+{
+  this.child[index].received_action = 'hug';
+}
+
+====================
+ParentComponent HTML
+====================
+<parent [child]="mychild" (emitHug)="hugChild($event)"></parent>
+
+
+
+====================
+ChildComponent
+====================
+@Input()child: {id: string, name: string, received_action: string, response: string };
+@Output()emitHug: EventEmitter<number> = new EventEmitter<number>();
+
+respondToHug(event: Event)
+{
+  //this.emitHug.emit(event.target.data);
+  //OR
+  this.emitHug.emit(this.child.id);
+}
+
+====================
+ChildComponent HTML
+====================
+
+
+
+
+
+
+
+
+
+
+
+
