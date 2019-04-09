@@ -1,0 +1,17 @@
+export interface Product {
+	id: string;
+	name: string;
+	price: string;
+	description: string;
+	status: string;
+}
+
+// Below the code you can Pick only those you need by creating a new type
+
+export Type ProductDetail = Pick<Product, 'id', | 'name' | 'description'>;
+
+// Or exclude only the ones you don't want
+
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
+export type ProductDetail = Omit<Product, 'status' | 'description'>;

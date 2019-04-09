@@ -1,0 +1,3 @@
+	search(): void {
+		this.router.navigate(['/search', { keyword:this.keyword }]);
+	}

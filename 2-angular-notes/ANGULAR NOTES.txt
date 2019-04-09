@@ -1,0 +1,1948 @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+ANGULAR 7 - NOTES
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+GETTING STARTED
+
+- What is TypeScript
+
+- A Basic Project Setup using Bootstrap for Styling
+
+
+
+
+THE BASICS
+
+- Module Introduction
+
+- How an Angular App gets Loaded and Started
+
+- Components are Imporant
+
+- Creating a New Component
+
+- Understanding the Role of AppModule and Component Declaration
+
+- Using Custom Components
+
+- Creating Components with the CLI Nesting Components
+
+- Working with Component Templates
+
+- Working with Component Styles
+
+- Fully Understanding the Component Selector
+
+- What is Databinding
+
+- String Interpolation
+
+- Property Binding
+
+- Property Binding vs String Interpolation
+
+- Event Binding
+
+- Bindable Properties and Events
+
+- Passing and Using Data with event Binding
+
+- Two-Way Databinding
+
+- Combining all Forms of Databinding
+
+- Understanding Directives
+
+- Using nglf to Output Data Conditionally
+
+- Enhancing nglf with an Else Condition
+
+- Styling Elements Dynamically with ngStyle
+
+- Applying CSS Classes Dynamically with ngClass
+
+- Outputting Lists with ngFor
+
+- Getting the index when using ngFor
+
+
+
+
+COURSE PROJECT THE BASICS
+
+- Course Project Introduction
+
+- Planning the App
+
+- Installing the Bootstrap Correctly
+
+- Setting up the Application
+
+- Creating the Components
+
+- Using the Components
+
+- Addig a Navigation Bar
+
+- Creating a Recipe Model
+
+- Adding Content to the Recipes Components
+
+- Outputting a List of Recipes with ngFor
+
+- Displaying Recipe Details
+
+- Working oon the ShoppingListComponent
+
+- Creating an Ingredient Model
+
+- Creating and Outputting the Shopping List
+
+- Adding a Shopping List Edit Section
+
+- Wrap Up Nexr Steps
+
+
+
+
+DEBUGGING
+
+- Understanding Angular Error Messages
+
+- Debugging Code in the Browser Using Sourcemaps
+
+- Using Augury to Dive into Angular Apps
+
+
+
+
+COMPONENTS DATABINDING DEEP DIVE
+
+- Module Introduction
+
+- Splitting Apps into Components
+
+- Property Event Binding Overview
+
+- Binding to Custom Properties
+
+- Assigning an Alias to Custom Properties
+
+- Binding to Custom Events
+
+- Assigning an Alias to Custom Properties
+
+- Binding to Custom Events
+
+- Assigning an Alias to Custom Events
+
+- Custom Property and Event Binding Summary
+
+- Understanding View Encapsulation
+
+- More on View Encapsulation
+
+- Using Local References in Templates
+
+- Getting Access to the Template DOM with ViewChild
+
+- Project content into Components with ng-content
+
+- Understanding the Component Lifecycle
+
+- Seeing Lifecycle Hooks in Action
+
+- Lifecycle Hooks and Templates Access
+
+- Getting Access to ng-content with ContentChild
+
+- Chapter 6 Wrap Up
+
+
+
+
+COURSE PROJECT - COMPONENTS DATABINDING
+
+- Introduction
+
+- Adding Navigation with Event Binding and nglf
+
+- Passing Recipe Data with Property Binding
+
+- Passing Data with Event and Property Binding (Combined)
+
+- Make sure you have FormsModule added
+
+- Allowing the User to Add Ingredients to the Shopping List
+
+
+
+
+DIRECTIVES DEEP DIVE
+
+- Module Introduction
+
+- ngFor and nglf Recap
+
+- ngClass and ngStyle Recap
+
+- Creating a Basic Attribute Directive
+
+- Using the Renderer to build a Beetter Attribute Directive
+
+- More about the Renderer
+
+- Using HostListener to Listen to Host Events
+
+- Using HostBinding to Bind to Host Properties
+
+- Binding to Directive Properties
+
+- What Happens behind the Scenes on Structural Directives
+
+- Building a Structural Directive
+
+- Understanding ngSwitch
+
+
+
+COURSE PROJECT - DIRECTIVES
+
+- Building and Using a Dropdown Directive
+
+
+
+USING SERVICES DEPENDENCY INJECTION
+COURSE PROJECT - SERVICES DEPENDENCY INJECTION
+CHANGING PAGES WITH ROUTING
+UNDERSTANDING OBSERVABLES
+COURSE PROJECT - OBSERVABLES
+HANDLING FORMS IN ANGULAR APPS
+COURSE PROJECT - FORMS
+USING PIPES TO TRANSFORM OUTPUTS
+MAKING HTTP REQUESTS
+COURSE PROJECT - HTTP
+AUTHENTICATION ROUTE PROTECTION IN ANGULAR APPS
+USING ANGULAR MODULES OPTIMIZING APPS
+DEPLOYING AN ANGULAR APP
+BONUS THE HTTP CLIENT
+BONUS ANGULAR UNIVERSAL
+ANGULAR ANIMATIONS
+
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IMPORTANT TIPS:
+=================================
+WHEN YOU INSTALL
+USE npm install --save [library name] CORRECT
+NOT npm install [library name] --save  WRONG!!!!!!
+
+
+MATERIAL DESIGN FIX
+=================================
+https://material.angular.io/guide/getting-started#appendix-configuring-systemjs
+ng add @angular/material
+
+
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+and
+
+schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+],
+
+
+
+
+
+
+HOW TO INCLUDE AND USE JQUERY IN ANGULAR CLI PROJECT
+=================================
+https://medium.com/@swarnakishore/how-to-include-and-use-jquery-in-angular-cli-project-592e0fe63176
+
+You can include jQuery in a very few and easy steps
+
+First install jQuery using npm as follows
+
+npm install jquery — save
+
+Second go to the ./angular-cli.json file at the root of your Angular CLI project folder, and find the scripts: [] property, and include the path to jQuery as follows
+
+"scripts": [ "../node_modules/jquery/dist/jquery.min.js" ]
+
+Note: If you want to use bootstrap in your application or if you already have in your project, make sure to include jQuery before including the bootstrap javascript file as follows. Since bootstrap’s javascript file requires jQuery.
+
+"scripts": [ "../node_modules/jquery/dist/jquery.min.js",
+"../node_modules/bootstrap/dist/js/bootstrap.js"]
+
+After including jQuery stop running your Angular CLI application and then re run it using ng serve.
+
+Now to use jQuery, all you have to do is to import it as follows in whatever component you want to use jQuery.
+
+import * from 'jquery';
+(or)
+declare var $: any;
+
+Take a look at the below code that uses jQuery to animate div on click, especially in second line below, we are importing everything as $ from jQuery.
+
+import { Component, OnInit  } from '@angular/core';
+import * as $ from 'jquery';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  title = 'Look jQuery Animation working in action!';
+
+  public ngOnInit()
+  {
+    $(document).ready(function(){
+        $("button").click(function(){
+            var div = $("div");  
+            div.animate({left: '100px'}, "slow");
+            div.animate({fontSize: '5em'}, "slow");
+        });
+    });
+  }
+}
+
+
+
+HOW TO IMPORT JS FILE IN ANGULAR 7
+=================================
+Import the library into Angular (TypeScript) As you might know TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ... Some libraries includes typing file and you don't need to install TypeScript's type destination for them. But in case a library does not have .d.ts file, you need to install it.
+
+ES6 is a modern version of Javascript with a more simplified and efficient syntax.
+Refer here for the ES6 new syntax.
+https://medium.freecodecamp.org/write-less-do-more-with-javascript-es6-5fd4a8e50ee2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GETTING STARTED:
+==================================
+
+WHAT IS ANGULAR?
+==================================
+Angular - Is a Superset of Javascript. A JS Framework that allows you to create Single Page Applications (SPAS)
+
+But now there are two types of angular
+
+AngularJS (Angular 1) and Angular 7 (Previously known as Angular 2 updated and now Angular 7).
+
+Difference:
+AngularJS - uses Javascript
+Angular 7 - uses TypeScript and ES6.
+
+
+See Bottom for ES6 Definition and new syntax.
+
+
+
+
+
+
+
+
+ANGULAR CLI INSTALLATION
+==================================
+after installation of node run these codes
+
+npm uninstall -g angular-cli @angular/cli 
+
+npm cache clean 
+
+npm install -g @angular/cli
+
+if error gehapon si mario
+Another approach is to use the --skip-install flag which generates a new project without installing all the node modules. You can then run npm install later in the generated project directory to install all the required modules.
+
+npm install --save @angular-devkit/build-angular @angular/compiler-cli
+
+
+
+CREATING A NEW PROJECT
+==================================
+Go to www/project folder and run this code
+ng new [project name]
+
+Next go to the root folder of your project and run: ng serve
+(It let's it run in the Browser and automatically refresh).
+
+
+Notes:
+^C (ctrl + C) - stop ng serve, but aslong as you're developing don't stop ng serve
+
+
+IMPORTANT NOTES
+==================================
+VARIABLES
+
+{{ title }}
+
+
+
+DIRECTIVES
+<input type="text" [(ngModel)]="name">
+<p>{{ name }}</p>
+
+
+NOTE:
+In app.module.ts
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+	declarations: [
+	AppComponent
+	],
+	imports: [
+	BrowserModule,
+	FormsModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
+});
+
+
+
+
+COURSE STRUCTURE
+==================================
+Getting Started
+The Basics Components & Databindings
+Directives
+Services & Dependency Injection
+Routing
+Observables
+Forms
+Pipes
+Http
+Authentication
+Optimization & NgModules
+Deployment
+Animations & Testing
+
+
+
+WHAT IS TYPESCRIPT?
+==================================
+A SUPERSET OF JAVASCRIPT, means more features than vanilla JS example, more Classes, Interfaces and Types (Super / Strong Types);
+Typing works like Swift, strict typing.
+
+In CLI, TYPESCRIPT is being COMPILED TO JAVASCRIPT.
+
+
+USING BOOTSTRAP FOR STYLING (HOW TO IMPORT STYLES)
+==================================
+1. npm install --save bootstrap@3
+2. npm install --save jquery
+
+NOTES:
+- You can use styles.css and make custom stylings.
+
+- You can use the bootstrap styling by setting it in angular.json file.
+nested path: architect>build>styles
+code:
+"styles": [
+	"node_modules/bootstrap/dist/css/bootstrap.min.css",
+	"src/styles.css"
+]
+
+//save
+//rerun ng serve
+----------------------------------
+Note:
+
+
+
+
+
+
+WHAT IS JAVASCRIPT ES6?
+==================================
+ES6 is a modern version of Javascript with a more simplified and efficient syntax.
+Refer here for the ES6 new syntax.
+https://medium.freecodecamp.org/write-less-do-more-with-javascript-es6-5fd4a8e50ee2
+
+
+
+
+
+
+
+
+rxjs FIX
+==================================
+npm install --save rxjs-compat
+
+npm install rxjs@6 rxjs-compat@6 --save
+
+npm install i @angular/http --save
+
+
+
+
+
+
+
+
+
+ES6 CHANGES
+==================================
+1. 3 types of Variable declarations
+let = scope variable
+var = normal variable which values can be changed.
+const = constant value who's value can't be changed.
+
+
+2. Arrow Functions (Optional I prefer the old syntax)
+
+3. Template Literals
+OLD:
+'Hello'+name+'! Welcome';
+
+ES6:
+`Hello ${name}! Welcome`;
+
+
+
+4. Object Destructing
+
+//Objects
+ES6
+let contacts = {
+	name: 'Anna',
+	age: 5
+}
+
+//We always have to name our variables to assign the same as the property names inside the object else it will return an undefined value.
+var { name, age } = contacts;
+
+console.log(name, age);
+
+//But incase we want to rename the key or property we use colon :
+var { name: otherName, }
+
+
+//Arrays
+const Arr = ['Joshua', 'Joanna', 'Joseph'];
+
+let [value1, value2, value3] = Arr;
+
+console.log(value1);
+console.log(value2);
+console.log(value3);
+
+
+
+5. Import and Export
+Example we are in the home.component.ts class and we want to use it in the settings Module.
+
+export default function myFunction(name)
+{
+	return `Hello ${name}`;
+}
+
+//In the settings.compoenent.ts class
+import myFunction from './home/home.component.ts';
+
+console.log(myFunction('Anna')); // Outputs Hello Anna
+
+//For multiple modules just put it in curly braces.
+import { myFunction, myOtherFunction } from './home/home.component.ts';
+
+
+
+
+6. Class
+Classes are the core of object oriented programming (OOP). They make your code more secure and encapsulated. Using classes gives your code a nice structure and keeps it oriented.
+
+//Most of the time we only use class in the typescript component (Our Controller).
+class myClass
+{
+	constructor(name,age)
+	{
+		this.name=name;
+		this.age=age;
+	}
+}
+const Home = new myClass("said",20);
+console.log(Home.name)//  said
+
+
+
+//To inherit from another class use the extend keyword to inherit all it's methods and properties aslong as they are not protected.
+
+class UserProfile extends myClass
+{
+	getUserName(name)
+	{
+		return `Hello ${name}`;
+	}
+}
+
+const profile = new UserProfile("Anna", 5); //from myClass constructor
+
+//can use both method from each class.
+profile = sayHello();
+profile = getUserName();
+
+----------------------------------
+Note:
+
+
+
+
+MODULES AND ITS COMPONENTS
+==================================
+path: src>app
+
+module components: app.component.css, app.component.html, app.component.spec.ts, app.component.ts, app.module.ts
+
+- app is the module name, the main module of the whole app.
+- app.module is our root module.
+- app.component are the app module's components.
+- created modules and components will be nested inside the app component.
+
+--------------------------------------------
+HOW THEY WORK:
+--------------------------------------------
+1. main.ts is the first one to be executed when running the application.
+
+2. imports AppModule
+
+3. calls bootstrapModule(AppModule) and passes AppModule as argument.
+
+FLOW:
+1. main.ts --> app.module.ts
+
+2. app.module.ts analyzes the components of the module that was passed.
+
+--------------------------------------------
+LOADING A COMPONENT TEMPLATE TO A VIEW
+--------------------------------------------
+path: index.html
+content: <app-root> HELLO! </app-root>
+selector: app-root
+
+Component having that selector will be loaded in the view using the component html file.
+
+----------------------------------
+Note:
+REMEMBER TO ALWAYS REGISTER the module YOU MADE IN THE app.module.ts
+first import the module to add and add the name in the NGModule declarations.
+
+
+
+
+COMPONENTS
+==================================
+- app.component is our root component.
+
+Components:
+You build your whole application by composing it with a couple of components.
+
+The app component or the root component this is where we nest our other components or layer them.
+
+Example:
+- Header
+- Header Items (Possible)
+- Main area
+- Side bar
+
+- Each component has its own css maybe, template, its own module.
+
+- This allows us to easily replicate or create a controlled piece in the application and reuse it.
+
+----------------------------------
+Note:
+
+
+
+
+
+HOW TO CREATE A NEW COMPONENT
+==================================
+- Layer them inside the app.component.html
+
+path: src>app
+create new folder mycomponent
+create mycomponent.component.ts
+create mycomponent.component.html
+OR run in CLI:
+ng generate component [name of component]
+
+
+
+file: mycomponent.component.ts
+code:
+import { Component } from '@angular/core';
+
+@Component({
+	selector: 'app-server',
+	templateUrl: './server.component.html'
+});
+
+export class ServerComponent {
+	
+}
+
+----------------------------------
+file: mycomponent.component.html
+code:
+<p>My server template</p>
+
+
+----------------------------------
+Note:
+
+
+
+
+
+UNDERSTANDING APP MODULE AND DECLARATION OF COMPONENTS
+==================================
+What is App Module?
+Angular uses components to build web pages and uses modules to bundle pieces example components of your app into packages.
+
+What does it do?
+Is a set of functionalities of our app and provides angular the information which features does our app have.
+
+file: app.module.ts
+code:
+
+//Required packages to import
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+//Frameworks you use in the app
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
+//App Component
+import { AppComponent } from './app.component';
+
+
+//Decorator
+@NgModule {
+	//properties
+	declarations: [
+	AppComponent
+	],
+	imports: [
+	BrowserModule,
+	FormsModule,
+	HttpModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
+})
+
+//The class
+export class AppModule {
+	//Methods here
+}
+
+
+
+----------------------------------
+Note:
+- AppModule is the root component and should be the one to use at launch start in index.html.
+
+
+
+
+
+USING EXTERNAL TEMPLATE, STYLE & SELECTORS
+==================================
+file: server1.component.ts
+code:
+//Template
+-------------
+templateUrl: './server1.component.html'; //use own component template
+
+
+//Styling
+-------------
+styleUrls: ['./server1.component.css', './server2/server2.component.css']; //array of external files
+
+
+//Selector
+-------------
+//The 
+selector: 'app-server1';
+
+
+
+file: server1.component.html
+code:
+<app-server1> HELLO! </app-server1>
+
+
+
+templateUrl: './server2/server2.component.html'; //use other component template
+selector: 'h3'; //Defines this component as an h3 element
+
+----------------------------------
+Note:
+
+
+
+
+
+
+
+USING INLINE TEMPLATE, STYLE & SELECTORS
+========================================
+file: server2.component.ts
+
+
+//Template
+-------------
+//Using single quotes.
+template: '<app-server1></app-server1><app-server1></app-server1>';
+
+//Using back ticks allows multiple lines of strings.
+template: `
+	<app-server1></app-server1>
+	<app-server1></app-server1>`;
+
+
+//Styling
+-------------
+styles: [`
+	h3 {
+		color: blue;
+	}
+`]
+
+----------------------------------
+Note:
+
+
+
+
+
+
+
+
+
+
+UNDERSTANDING THE PURPOSE OF SELECTOR
+========================================
+index.html is required first to load the root component.
+so index.html calls the app-root selector.
+
+App Module
+file: app.component.ts
+selector: 'app-root';
+template: './app.component.html';
+
+file: app.component.html
+content:
+<app-servers><app-servers>
+
+//loads a module and template with app-server selector.
+file: servers.component.ts
+selector: 'app-servers';
+template: './server.component.html';
+
+
+
+
+
+
+DATA BINDING
+==================================
+Databinding = Communication between your types of codes and template.
+
+There are 4 Types of Databinding.
+1. String Interpolation = {{ data }} //Output value of a variable.
+
+2. Property Binding = [property]="data" //Key value pair.
+
+3. Event Binding = (event)="expression"
+
+4. Two-Way Binding = [(ngModdel)]="data" //Combination of both property and event binding.
+
+
+TYPESSCRIPT & TEMPLATE FLOWCHART
+---------------------------------
+TypeScript Code = Business Logic, this is where you write your code, do calculations, make http requests.
+   |      ^
+   V      |
+OUTPUT  REACTS TO USER
+ DATA   EVENTS
+   |      ^
+   V      |
+Template = HTML
+
+
+
+--------------------------------
+Note:
+component.ts is where you write your javascript codes.
+component.html is where you put your html codes.
+
+
+
+
+
+
+STRING INTERPOLATION
+==================================
+Syntax: {{ expression }} //Outputs the value of a property.
+
+Condition: Must output a string.
+
+Allowed Examples:
+{{ method }} //a method which outputs a string.
+{{ 'Hello' }} //static string.
+{{ property }}
+
+
+
+file: server.component.ts
+code:
+export class ServerComponent {
+	serverID: number = 10; //Allowed since number can easily be converted to string.
+	serverStatus: string = 'Offline';
+
+	getServerStatus()
+	{
+		return this.serverStatus;
+	}
+}
+
+
+--------------------------------
+Note:
+- Variable = HTML, CSS property
+- Property = Javascript, PHP Variable
+- Both are the same in terms of it's use.
+
+
+
+
+
+
+PROPERTY BINDING VS STRING INTERPOLATION
+========================================
+
+
+export class ServerComponent {
+	allowNewServer = false;
+
+	constructor() {
+		setTimeout(() => {
+		this.allowNewServer = true;
+		}, 2000);
+	}
+}
+
+----------------------------------
+Note:
+//only assigns the new value if current value is == false
+<button class="btn btn-primary" [disabled]="!allowNewServer">
+Add New Server
+</button>
+
+
+
+
+
+
+EVENT BINDING
+==================================
+Syntax: ()
+
+Explanation: 
+If in javascript we use the onclick attribute. 
+In angular we use Event Binding which uses ().
+You can bind to all events made available by the HTML attribute you are using this on.
+
+
+---------------------
+file: server.component.html
+code:
+<button class="btn" (click)="onCreateServer()">Add Server</button>
+
+
+file: server.component.ts
+code:
+
+export class ServerComponent 
+{
+	serverID: number = 10; //Allowed since number can easily be converted to string.
+	serverStatus: string = 'Offline';
+	serverCreateStatus = 'Server Created';
+
+	constructor()
+	{
+		setTimeout(() => {
+		this.allowNewServer = true;
+		}, 2000);
+	}
+
+	onCreateServer()
+	{
+		this.serverCreatedStatus = 'Server Created Successfully.';
+	}
+}
+
+----------------------------------
+Note:
+
+
+
+
+
+
+
+
+
+
+BINDABLE PROPERTIES AND EVENTS
+=================================
+You can basically bind to all Properties and Events - a good idea is to console.log()  the element you're interested in to see which properties and events it offers.
+Important: For events, you don't bind to onclick but only to click (=> (click)).
+And you will be automatically be able to bind to any of these MOUSE EVENTS:
+onclick, ondbclick,onmousedown and more
+
+Same works to all other HTML attributes with events.
+
+
+
+
+
+
+
+
+PASSING AND USING DATA WITH EVENT BINDING
+=========================================
+
+The $ in the funtion parameter means that you can ship some data together with the event and capture it on your method.
+---------------------------------
+//TS
+file: server.component.ts
+code:
+
+export class ServerComponent 
+{
+	serverID: number = 10; //Allowed since number can easily be converted to string.
+	serverStatus: string = 'Offline';
+	onCreateServer = 'Server Created';
+
+	constructor()
+	{
+		setTimeout(() => {
+		this.allowNewServer = true;
+		}, 2000);
+	}
+
+
+	onCreateServer()
+	{
+		serverName = 'Server Created Successfully.';
+	}
+
+	onUpdateServerName(event: Event)
+	{
+		this.serverName = (<HTMLInputElement>event.target).value
+	}
+}
+
+
+
+//HTML
+//this will be fired on every keystroke
+<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+
+
+----------------------------------
+Note:
+
+onUpdateServerName(event: Event)
+			|
+            V
+functionName(placeholder: argument)
+
+placeholder can be any word, while the argument needs to be a dataType.
+
+
+
+
+
+
+
+
+
+TWO WAY DATABINDING
+==================================
+
+A Combination of property and event, reacting to events in both directions.
+Syntax for property: []
+Syntax for event: ()
+Syntax for Two Way Binding: [()]
+
+
+Example:
+//TS
+export class ServerComponent 
+{
+	serverName = 'Testserver';
+	constructor()
+	{
+		setTimeout(() => {
+		this.allowNewServer = true;
+		}, 2000);
+	}
+
+	onCreateServer()
+	{
+		this.serverName = 'Server Created Successfully.';
+	}
+
+	onUpdateServerName(event: Event)
+	{
+		this.serverName = (<HTMLInputElement>event.target).value;
+	}
+}
+
+//HTML
+//This input field is not using two way binding
+<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+//This input field uses two way binding since it listens or reacts to the changes of the input above and also performs the event from the input above.
+<input type="text" class="form-control" [(ngModel)]="serverName">
+
+
+<p>{{ serverName }}</p>
+
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add Server</button>
+
+
+
+----------------------------------
+Note:
+Important: For Two-Way-Binding (covered in the next lecture) to work, you need to enable the ngModel  directive. This is done by adding the FormsModule  to the imports[]  array in the AppModule.
+
+You then also need to add the import from @angular/forms  in the app.module.ts file:
+
+import { FormsModule } from '@angular/forms';
+
+
+
+
+
+UNDERSTANDING DIRECTIVES
+==================================
+Directives are instructions in the DOM.
+Components are directives with a template.
+While the previous one we used were diectives without a template, such as ngModel.
+
+<p appTurnGreen>Receives a green Background!</p>
+
+@Directive({
+	selector: '[appTurnGreen]';
+})
+export class TurnGreenDirective {
+	
+}
+
+
+
+
+Applying CSS Classes Dynamically with ngClass
+=======================================
+<p [ngStyle]="{backgroundColor: getColor()}"
+   [ngStyle]="{online: serverStatus === 'online'"> //if true then usa na ma add ang online nga class
+   {{ 'Server' }} with ID {{ serverID }} is {{ getServerStatus() }}
+</p>
+
+
+
+
+Using ngIf to Output Data Conditionally
+=======================================
+* means Structural Directive.
+
+<p *ngIf="serverCreated;">Server Created, serverName is {{ serverName }}</p>
+
+if true it will return the data
+//Nothing is hidden, nothing is in the DOM, it relies on the condition whether to fetch it or not
+
+
+
+
+
+Enhancing ngIf with an Else Condition
+=======================================
+<p *ngIf="serverCreated; else noServer">Server Created, serverName is {{ serverName }}</p>
+<ng-template #noServer>
+No Server waas created.
+</ng-template>
+
+//noServer is the marker of the ng-template
+
+
+
+
+Outputting Lists with ngFor
+=======================================
+<app-server *ngFor="let server of Servers"></app-server>
+
+
+
+
+
+Gettig the Index when using ngFor
+=======================================
+<div *ngFor="let server of servers; let i == index" 
+[ngStyle="{ backgroundColor: i >= 4? 'blue' : 'transparent'}"
+[ngStyle="{ 'white-text': i >= 5? 'blue' : 'transparent'}"
+>{{ serverName }}</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Creating Components
+===================
+CLI command:
+ng generate component [name] --spec false //prevent creation of test file
+
+--------------------------------------
+It's important that you structure the folders when creating components.
+
+Example:
+- Recipes
+	- Recipe List //Should be inside the recipes component coz all recipe related should go here
+	//To generate just add a path using its parent component folder
+	- ng generate component recipes/recipe-list --spec false
+
+	//Same Goes with recipe detail
+	-Recipe Detail
+
+
+
+
+
+
+
+ROUTING
+=======
+file: app-routing.module.ts
+import { ComponentName } from './component_path';
+//dapat kana tanan component saa ubos dapat imo e import diri
+
+const appRoutes: Routes = [
+{ path:	'', component: HomeComponent },
+{ path:	'users', component: UsersComponent, children },
+{ path:	':id/:name', component: UserComponent },
+{ path:	'id/edit', component: EditServerComponent },
+{ path:	'**', redirectTo: 'not-found' }
+}];
+
+@NgModule({
+	imports: [
+	RouterModule.forRoot(appRoutes)]
+})
+
+
+
+
+OTHER ROUTING TUTORIAL
+======================
+ng generate module app-routing --flat --module=app
+src/app/app-routing.module.ts (generated)
+
+//after creating remove anything that's not here and add the import routermodule and exports: [routermodule ]
+
+//it should look like this
+--------------------------
+1.)
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+
+@NgModule({
+	exports: [ RouterModule ]
+})
+export class AppRoutingModule { }
+
+
+
+
+
+
+
+2.) Add this to your app-routing.component
+--------------------------
+import { HeroesComponent } from './heroes/heroes.component';
+
+const routes: Routes = [
+		{ path: 'heroes', component: HeroesComponent }
+];
+
+
+
+
+
+
+
+3.) add imports
+--------------------------
+imports: [ RouterModule.forRoot(routes) ],
+
+
+
+
+4.) add RouterOutlet in app.component.html
+--------------------------
+<h1>{{title}}</h1>
+<router-outlet></router-outlet>
+<app-messages></app-messages>
+
+
+
+5.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+REFERENCE
+=============================================
+How to pass data to another component w/o routes
+
+
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'rio-hello',
+  template: '<p>Hello, {{name}}!</p>',
+})
+export class HelloComponent {
+  @Input() name: string;
+}
+
+----------------------------------
+<!-- To bind to a raw string -->
+<rio-hello name="World"></rio-hello>
+<!-- To bind to a variable in the parent scope -->
+<rio-hello [name]="helloName"></rio-hello>
+
+
+
+-----------------------------------
+
+
+
+
+
+
+
+
+HOW TO LAZY LOAD MODULES
+==============================================
+Routes at the app level
+In AppRoutingModule, update the routes array with the following:
+
+src/app/app-routing.module.ts
+content_copy
+const routes: Routes = [
+  {
+    path: 'customers',
+    loadChildren: './customers/customers.module#CustomersModule'
+  },
+  {
+    path: 'orders',
+    loadChildren: './orders/orders.module#OrdersModule'
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }
+];
+
+
+
+INSIDE THE FEATURE MODULE
+==========================
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CustomersRoutingModule } from './customers-routing.module';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    CustomersRoutingModule
+  ],
+  declarations: [CustomerListComponent]
+})
+export class CustomersModule { }
+
+
+
+INSIDE THE FEATURE MODULE ROUTING CONFIG
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { CustomerListComponent } from './customer-list/customer-list.component';
+
+
+const routes: Routes = [
+  {
+    path: '',
+    component: CustomerListComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class CustomersRoutingModule { }
+
+
+
+
+
+
+
+CONTINUE WITH THE REST OF THE FEATURE MODULE
+============================================
+src/app/orders/orders-routing.module.ts (excerpt)
+content_copy
+import { OrderListComponent } from './order-list/order-list.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: OrderListComponent
+  }
+];
+
+
+CONFIRM IT'S WORKING
+====================
+You can check to see that a module is indeed being lazy loaded with the Chrome developer tools. In Chrome, open the dev tools by pressing Cmd+Option+i on a Mac or Ctrl+Alt+i on a PC and go to the Network Tab.
+
+Click on the Orders or Customers button. If you see a chunk appear, you’ve wired everything up properly and the feature module is being lazy loaded. A chunk should appear for Orders and for Customers but will only appear once for each.
+
+
+
+
+
+UNDERSTANDING MODULES
+=====================
+//Makes the class availble for use or available for import
+export class AppComponent { ... }
+
+
+//
+
+
+HOW TO DEECLARE CHILD ROUTES
+===========================
+
+export const routeConfig:Routes = [
+    {
+        path: '',
+        children: [
+            {
+                path: 'home',
+                component: Home
+            },
+            {
+                path: 'lessons',
+                component: AllLessons
+            }
+        ]    
+    }
+
+];
+
+
+
+
+OR
+====================
+export const routeConfig:Routes = [
+    {        
+        path: 'courses',
+        children: [
+            {
+                path: ':id',
+                children: [
+                    {
+                        path: '',    
+                        component: CourseLessons,
+                    },
+                    {
+                        path: 'videos/:id',
+                        component: VideoLesson
+                    },
+                    {
+                        path: 'textlectures/:id',
+                        component: TextLesson
+                    },
+                    {
+                        path: 'quizzes/:id',
+                        component: QuizLesson
+                    },
+                    {
+                        path: 'interactivelessons/:id',
+                        component: InteractiveLesson
+                    }
+                ]
+            }
+        ]    
+    }
+];
+
+
+
+MULTIPLE OUTLETS BUT ONLY 1 URL
+=============================
+EXAMPLE: 
+<div class="main-container">
+    <router-outlet></router-outlet>
+    <router-outlet name="section1"></router-outlet>
+    <router-outlet name="section2"></router-outlet>
+    <router-outlet name="section3"></router-outlet>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+//WHAT IS AUXILLIARY ROUTING?
+=============================
+What does the URL look like for accessing an auxiliary route?
+The Angular Router introduces a special syntax to allow to define auxiliary route URLs in the same URL as the primary route URL. Let's say that we want to trigger navigation and show AllLessons in the primary outlet and Playlist in the  rightAside outlet. The URL would look like this:
+
+/lessons(aside:playlist)
+
+We can see that /lessons would still route the primary route to the AllLessons component. But inside parentheses we have an auxiliary route. First, we have the name of the outlet to which it refers to: aside.
+
+Then we have a colon separator and then we have the url that we want to apply to that outlet, in this case /playlist. This would cause the Playlist component to show in place of the aside outlet.
+
+Note that you could have multiple auxiliary routes inside parenthesis, separated by  //. for example this would define the url for a left-menu outlet:
+
+`/lessons(aside:playlist//leftmenu:/some/path)`
+
+
+PRACTICAL USE OF AUXILLARY ROUTES
+=======================================
+As you can see, different outlets correspond to different auxiliary routes. But when would you want to use auxiliary routes and why?
+
+It's very common for applications to divide the page into multiple regions:
+
+the top-level menu
+the side menu that often is a subsection of the top menu
+an aside on the right maybe displaying a playlist of lessons
+popup dialogs for editing a list detail, that you want to keep upon during navigation
+a chat window that stays opened during navigation
+
+An example of an auxiliary route configuration
+Imagine that to the right of our screen, we want to add a playlist of lessons that gets different content when we navigate: It might contain the list of latest lessons, or the lessons of a given course:
+
+export const routeConfig:Routes = [
+    {
+        path: 'courses',
+        ....
+    },
+    {
+        path: 'playlist',
+        outlet: 'aside',
+        component: Playlist
+    }
+];
+
+
+What we have configured here is that when the path of the aside outlet is set to playlist, we are going to display the component Playlist. This routing can be defined independently of the primary route.
+
+Let's see how does this work, how can the URL be used to display two URLs instead of one?
+
+
+
+
+
+
+Autofocus fix
+==================================
+npm install i angular-autofocus-fix
+
+
+
+
+
+
+
+
+
+DIRECTIVES ISSUE IN LAZY LOADED MODULES
+=======================================
+Make a module for your directive that looks like so: @NgModule({ declarations: [TestDirective], exports: [TestDirective], }) export class TestDirectiveModule {} And import it both in your app module and in the lazy page modules that need it.
+
+
+HOW MODULE IMPORT WORKS
+=======================
+example:
+myDirectiveModule
+declarations: myDirective
+exports: myDirective
+
+- Using the myDirectiveModule in the parentModule
+parentModule
+imports: myDirectiveModule
+
+- Using parentModule in appModule
+appModule
+imports: parentModule
+
+OR 
+
+using Lazy Load
+let the router load the module
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Definitions:
+==================================
+Import - Imports other modules to another module for it's methods to be available for use.
+ES6 - A modern version of Javascript.
+
+
+
+
+Creating components
+CLI Commands:
+==================================
+ng generate component [name of component]
+
+
+
+
+Tips:
+==================================
+Call a template intended for an array of templates so that inside this template you can call a template for example intended only for 1 row.
+Example:
+- First calls a table template.
+- In the table template it also calls the row template and the header template.
+
+------------------------------------------------------------------------
+We can use selectors like we select in css or selecting an element.
+- Selectors can be an html tag element or property. 
+	Example: selector: 'h3';
+
+- Selectors can be any unique word.
+	Example: selector: 'app-root';
+
+- Selectors can be attributes or custom attributes.
+	//Just like in css it selects attributes by using [].
+	Example: '[app-servers]';
+
+
+
+
+
+WHAT IS ES6?
+==================================
+ES6 is a modern version of Javascript with a more simplified and efficient syntax.
+Refer here for the ES6 new syntax.
+https://medium.freecodecamp.org/write-less-do-more-with-javascript-es6-5fd4a8e50ee2
+
+
+
+ES6 CHANGES - Mga optional rani sila, Pwede ra gehapon nimo gamito ang daan.
+==================================
+1. 3 types of Variable declarations
+let = scope variable
+var = normal variable which values can be changed.
+const = constant value who's value can't be changed.
+
+
+2. Arrow Functions (Optional I prefer the old syntax)
+
+3. Template Literals
+OLD:
+'Hello'+name+'! Welcome';
+
+ES6:
+`Hello ${name}! Welcome`;
+
+
+
+4. Object Destructing
+
+//Objects
+ES6
+let contacts = {
+	name: 'Anna',
+	age: 5
+}
+
+//We always have to name our variables to assign the same as the property names inside the object else it will return an undefined value.
+var { name, age } = contacts;
+
+console.log(name, age);
+
+//But incase we want to rename the key or property we use colon :
+var { name: otherName, }
+
+
+//Arrays
+const Arr = ['Joshua', 'Joanna', 'Joseph'];
+
+let [value1, value2, value3] = Arr;
+
+console.log(value1);
+console.log(value2);
+console.log(value3);
+
+
+
+5. Import and Export
+Example we are in the home.component.ts class and we want to use it in the settings Module.
+
+export default function myFunction(name)
+{
+	return `Hello ${name}`;
+}
+
+//In the settings.compoenent.ts class
+import myFunction from './home/home.component.ts';
+
+console.log(myFunction('Anna')); // Outputs Hello Anna
+
+//For multiple modules just put it in curly braces.
+import { myFunction, myOtherFunction } from './home/home.component.ts';
+
+
+
+
+6. Class
+Classes are the core of object oriented programming (OOP). They make your code more secure and encapsulated. Using classes gives your code a nice structure and keeps it oriented.
+
+//Most of the time we only use class in the typescript component (Our Controller).
+class myClass
+{
+	constructor(name,age)
+	{
+		this.name=name;
+		this.age=age;
+	}
+}
+const Home = new myClass("said",20);
+console.log(Home.name)//  said
+
+
+
+//To inherit from another class use the extend keyword to inherit all it's methods and properties aslong as they are not protected.
+
+class UserProfile extends myClass
+{
+	getUserName(name)
+	{
+		return `Hello ${name}`;
+	}
+}
+
+const profile = new UserProfile("Anna", 5); //from myClass constructor
+
+//can use both method from each class.
+profile = sayHello();
+profile = getUserName();
+
+
+
+
+
+
+
+HOW TO INSTALL EXISTING ANGULAR PROJECTS
+========================================
+How to use
+----------
+
+Run "npm install" inside this project folder to install all dependencies.
+
+Make sure you use the latest version of the CLI (upgrade guide below)
+
+Run "ng serve" to see the app in action (try "npm start" in case "ng serve" fails).
+
+Feel free to compare it with your project code to spot any errors you might have.
+
+
+How to upgrade the CLI
+-----------------------
+
+Run the below commands - only use "sudo" on Mac/ Linux.
+
+sudo npm uninstall -g angular-cli @angular/cli
+npm cache clean --force
+sudo npm install -g @angular/cli
+
+
+
+
+
+
+
+
+
+
+
+
+
+ACCESS-CONTROL-ORIGIN FIX
+==========================
+In PHP code or api
+
+function myapi() {
+	header("Access-Control-Allow-Origin: *");
+	//your code
+	echo json_encode($data);
+}
+		
+
+
+
+MATERIAL
+==========================
+npm install --save @angular/material @angular/cdk @angular/
+
+
+
+
+
+
+
+
+HOW TO FIX NPM INSTALL BEHIND A PROXY
+=====================================
+npm config edit --global
+
+
+
+
+
+

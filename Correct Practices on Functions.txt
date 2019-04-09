@@ -1,0 +1,37 @@
+/* OK */
+function reverse(s: string): string;
+
+/* OK */
+function fn(x: () => void) {
+    x();
+}
+
+function fn(x: () => void) {
+    var k = x(); // oops! meant to do something else
+    k.doSomething(); // error, but would be OK if the return type had been 'any'
+}
+
+
+/* OK */
+interface Fetcher {
+    getObject(done: (data: any, elapsedTime: number) => void): void;
+}
+
+
+/* OK */
+declare function beforeAll(action: (done: DoneFn) => void, timeout?: number): void;
+
+/* OK */
+declare function fn(x: HTMLDivElement): string;
+declare function fn(x: HTMLElement): number;
+declare function fn(x: any): any;
+
+var myElem: HTMLDivElement;
+var x = fn(myElem); // x: string, :)
+
+
+
+/* OK */
+interface Example {
+    diff(one: string, two?: string, three?: boolean): number;
+}

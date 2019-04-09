@@ -1,0 +1,4 @@
+if(sessionStorage.getItem('username') != null) {
+            accountService.userInfo.username = sessionStorage.getItem('username');
+        }
+		this.userInfo = accountService.userInfo;

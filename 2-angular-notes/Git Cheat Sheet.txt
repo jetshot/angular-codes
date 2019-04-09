@@ -1,0 +1,225 @@
+GIT CHEAT SHEET
+===============
+STATES OF A FILE
+================
+1. STAGED
+---------
+It can be staged. Which means the files with with the updated changes are marked to be committed to the local repository but not yet committed.
+
+2. MODIFIED
+-----------
+It can be modified. Which means the files with the updated changes are not yet stored in the local repository.
+
+
+3. COMMITTED
+------------
+It can be committed. Which means that the changes you made to your file are safely stored in the local repository.
+
+
+
+
+DIFFINITIONS:
+=============
+GIT ADD
+-------
+git add is a command used to add a file that is in the working directory to the staging area.
+
+GIT COMMIT
+---------
+git commit is a command used to add all files that are staged to the local repository.
+
+GIT PUSH
+--------
+git push is a command used to add all committed files in the local repository to the remote repository. So in the remote repository, all files and changes will be visible to anyone with access to the remote repository.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+1. LOCAL COPY
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+=============================================
+Create a Folder
+===============
+cd simple-git-demo 
+
+
+Making it A Local Git Repository
+================================
+git init
+
+
+
+
+
+
+
+
+
+
+Actual Steps
+============
+Creating your First File
+------------------------
+demo.txt
+
+
+Staging
+-----------
+git add demo.txt
+
+- this puts files in staging mode
+- if you have two files and you wish to stage them separately, so they will be pushed separately
+	- git add demo1.txt
+	- git add demo2.txt
+
+Committing the staged Files
+---------------------------
+git commit -m "Initial Commit"
+
+
+Git Status and Git Log
+----------------------
+- Now modify the demo.txt file and add the following snippet:
+
+Initial Content 
+Adding more Content
+
+
+- Use git status to find out information regarding what files are modified and what files are there in the staging area — it shows other information as well, which we can ignore for now.
+
+
+Git Status
+----------
+git status
+
+- The status shows that demo.txt is modified and is not yet in the staging area.
+
+
+- Now let us add demo.txt to the staging area and commit it using the following commands:
+
+git add demo.txt 
+git commit -m "demo.txt file is modified"
+
+Git Log
+-------
+git log
+
+- Use git log to print out all the commits which have been done up until now.
+- The log shows the author of each commit, the date of the commit, and the commit message.
+
+
+
+
+Branches
+========
+- The code from Test Branch can be merged with the Master branch 
+git merge
+
+Create
+------
+git branch test
+
+- We are still in the context of the master branch. In order to switch to the test branch. use the following command:
+
+git checkout test
+
+
+List All Branches
+-----------------
+git branch
+
+
+
+Modify Demo.txt
+---------------
+Initial Content 
+Adding more Content 
+Adding some Content from test Branch
+
+
+
+git add demo.txt 
+git commit -m "Test Branch Commit"
+
+- This commit was done in the Test Branch, and now Test Branch is ahead of Master Branch by 1 commit — as the test branch also includes the 2 commits from the master branch.
+
+- You can verify the commit history in Test Branch using:
+git log
+
+
+
+Merging
+-------
+
+- In order to merge the code from the test branch into the master branch, follow these steps:
+
+- First go back to the master branch:
+
+git checkout master
+- Then run the merge command:
+
+git merge test
+
+
+
+But in real projects, there will be conflicts when a merge is being done. 
+Run git log now and you will notice that the master also has 3 commits.
+
+
+
+
+
+
+
+
+=============================================
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+1. REMOTE COPY
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+=============================================
+
+- In order to point your local repository to the remote repository, use the following command:
+
+git remote add origin [repository url]
+
+
+Git Push
+--------
+- In order to push all the code from the local repository into the remote repository, use the following command:
+
+git push -u origin master
+
+- This pushes the code from the master branch in the local repository to the master branch in the remote repository.
+
+
+Git Pull
+--------
+- git pull is used to pull the latest changes from the remote repository into the local repository. The remote repository code is updated continuously by various developers, hence git pull is necessary:
+
+git pull origin master
+
+
+Git Clone
+---------
+- git clone is used to clone an existing remote repository into your computer. The command for this is:
+
+git clone [repository url]

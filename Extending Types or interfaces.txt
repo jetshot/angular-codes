@@ -1,0 +1,16 @@
+export interface ProductAuthor {
+	author: string;
+	authorLink: string;
+}
+
+export interface ProductBase {
+	id: string;
+	price: string;
+}
+
+export interface ProductDetail extends ProductAuthor, ProductBase { }
+
+export interface Product extends ProductBase, ProductAuthor {
+	description: string;
+	name: string;
+}
